@@ -9,10 +9,10 @@ RUN npm run build
 # Etapa production
 FROM node:20-alpine
 WORKDIR /app
-COPY --from=build /app/package*.json ./
+COPY --from=BUILD /app/package*.json ./
 RUN npm install --only=production
-COPY --from=build /app/.next ./.next
-COPY --from=build /app/public ./public
+COPY --from=BUILD /app/.next ./.next
+COPY --from=BUILD /app/public ./public
 EXPOSE 3000
 CMD ["npm", "start"]
 
